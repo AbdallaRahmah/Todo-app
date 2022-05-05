@@ -6,14 +6,12 @@ const babel = require("gulp-babel");
 const browser = require("browser-sync");
 
 // browser sync task
-function serve(cb) {
+function serve() {
   return browser.init({
     server: {
       baseDir: "./dist",
     },
   });
-
-  cb();
 }
 
 exports.serve = serve;
@@ -27,20 +25,18 @@ function html(cb) {
 exports.html = html;
 
 // sass task
-function css(cb) {
+function css() {
   return src("./src/sass/**/**.scss")
     .pipe(sass())
     .pipe(prefixer())
     .pipe(dest("dist/css/", { sourcemaps: "." }));
-  cb();
 }
 
 exports.css = css;
 
 // js task
-function js(cb) {
+function js() {
   return src("./src/js/**.js").pipe(babel()).pipe(dest("dist/js/"));
-  cb();
 }
 
 exports.js = js;
