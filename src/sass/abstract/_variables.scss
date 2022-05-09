@@ -1,0 +1,41 @@
+:root {
+ // light color vars
+ --white: hsl(0, 0%, 100%);
+ --body-bac-clr: hsl(0, 0%, 98%);
+ --task-bac-clr: hsl(0, 0%, 100%);
+ --text-clr-100: hsl(236, 33%, 92%);
+ --text-clr-200: hsl(233, 11%, 84%);
+ --text-clr-300: hsl(236, 9%, 61%);
+ --text-clr-400: hsl(235, 19%, 35%);
+ --hover-cont-clr: hsl(220, 98%, 61%);
+ --linear-bac: linear-gradient(hsl(192, 100%, 67%) to hsl(280, 87%, 65%));
+ // light image var
+ --background--img: url("./../images/bg-mobile-light.jpg");
+}
+
+// light desktop image setup
+@media(min-width:576px) {
+ :root {
+  --background--img: url("./../images/bg-desktop-light.jpg");
+ }
+}
+
+.dark {
+ // dark color vars
+ --body-bac-clr: hsl(235, 21%, 11%);
+ --task-bac-clr: hsl(235, 24%, 19%);
+ --text-clr-100: hsl(237, 14%, 26%);
+ --text-clr-200: hsl(233, 14%, 35%);
+ --text-clr-300: hsl(234, 11%, 52%);
+ --text-clr-400: hsl(234, 39%, 85%);
+ --text-clr-400-hover: hsl(236, 33%, 92%);
+ // dark image var
+ --background--img: url("./../images/bg-mobile-dark.jpg");
+}
+
+// dark desktop image setup
+@media(min-width:576px) {
+ .dark {
+  --background--img: url("./../images/bg-desktop-dark.jpg");
+ }
+}

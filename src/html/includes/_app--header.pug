@@ -1,7 +1,7 @@
 .app__header 
  h1.header__title Todo
- button.header--toggle 
-  span#toglle__img
+ button(class="header--toggle",id="mode--toggle")
+  img(class="toggle__img",id="toggle__img",src="./images/icon-moon.svg",alt="dark mode toggle")
  .header--input 
-  button(class="input--btn",id="task__input")
+  button(class="input--btn",id="task__input") add
   input(type="text",name="task",class="input__task",id="task__data")

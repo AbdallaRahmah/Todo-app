@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+:root {
+  --white: hsl(0, 0%, 100%);
+  --body-bac-clr: hsl(0, 0%, 98%);
+  --task-bac-clr: hsl(0, 0%, 100%);
+  --text-clr-100: hsl(236, 33%, 92%);
+  --text-clr-200: hsl(233, 11%, 84%);
+  --text-clr-300: hsl(236, 9%, 61%);
+  --text-clr-400: hsl(235, 19%, 35%);
+  --hover-cont-clr: hsl(220, 98%, 61%);
+  --linear-bac: linear-gradient(hsl(192, 100%, 67%) to hsl(280, 87%, 65%));
+  --background--img: url("./../images/bg-mobile-light.jpg");
+}
+
+@media (min-width: 576px) {
+  :root {
+    --background--img: url("./../images/bg-desktop-light.jpg");
+  }
+}
+.dark {
+  --body-bac-clr: hsl(235, 21%, 11%);
+  --task-bac-clr: hsl(235, 24%, 19%);
+  --text-clr-100: hsl(237, 14%, 26%);
+  --text-clr-200: hsl(233, 14%, 35%);
+  --text-clr-300: hsl(234, 11%, 52%);
+  --text-clr-400: hsl(234, 39%, 85%);
+  --text-clr-400-hover: hsl(236, 33%, 92%);
+  --background--img: url("./../images/bg-mobile-dark.jpg");
+}
+
+@media (min-width: 576px) {
+  .dark {
+    --background--img: url("./../images/bg-desktop-dark.jpg");
+  }
+}
+* {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: var(--body-bac-clr);
+  position: relative;
+}
+
+.background__image {
+  width: 100%;
+  height: 30%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -10;
+  background-image: var(--background--img);
+  background-size: cover;
+}
+@media (min-width: 576px) {
+  .background__image {
+    height: 40%;
+  }
+}
+
+.app {
+  margin: 3rem 0;
+  width: min(85%, 475px);
+  height: calc(100% - 6rem);
+  display: flex;
+  flex-direction: column;
+}
+.app .app__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.app .app__header .header__title {
+  width: 50%;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+.app .app__header .header--toggle {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: transparent;
+  border: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+.app .app__header .header--toggle:active {
+  transform: translate(1px, 1px);
+}
+.app .app__header .header--toggle .toggle__img {
+  height: 100%;
+  width: 100%;
+}
+.app .app__header .header--input {
+  margin: 1.5rem 0;
+  width: 100%;
+  height: 2rem;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.app .app__header .header--input .input--btn {
+  width: 15%;
+  height: 100%;
+  background: linear-gradient(to right, hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
+  color: var(--white);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  border: none;
+}
+.app .app__header .header--input .input--btn:active {
+  transform: translate(1px, 1px);
+}
+.app .app__header .header--input .input__task {
+  padding: 0.5rem 1rem;
+  width: 85%;
+  height: 100%;
+  font-size: 1.1rem;
+  color: var(--text-clr-400);
+  font-weight: bold;
+  border: none;
+}
+.app .app__header .header--input .input__task:focus {
+  outline: none;
+}

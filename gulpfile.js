@@ -29,7 +29,7 @@ function css() {
   return src("./src/sass/**/**.scss")
     .pipe(sass())
     .pipe(prefixer())
-    .pipe(dest("dist/css/", { sourcemaps: "." }));
+    .pipe(dest("dist/css/", { sourcemaps: true }));
 }
 
 exports.css = css;
