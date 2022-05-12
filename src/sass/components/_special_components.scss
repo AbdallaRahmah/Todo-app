@@ -1,0 +1,8 @@
+@use "./../abstract/variables";
+
+// input box for tasks 
+.input__box {
+ width: 100%;
+ height: 2rem;
+ background-color: var(--task-bac-clr);
+}

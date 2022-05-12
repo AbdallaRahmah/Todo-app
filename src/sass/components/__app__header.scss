@@ -1,0 +1,67 @@
+// app header component
+.app__header {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ flex-wrap: wrap;
+
+ .header__title {
+  width: 50%;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+ }
+
+ .header--toggle {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: transparent;
+  border: none;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:active {
+   transform: translate(1px, 1px);
+  }
+
+  .toggle__img {
+   height: 100%;
+   width: 100%;
+  }
+ }
+
+ .header--input {
+  margin: 1.5rem 0;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .input--btn {
+   width: 15%;
+   height: 100%;
+   background: linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+   color: var(--white);
+   font-size: 1.1rem;
+   text-transform: uppercase;
+   border: none;
+
+   &:active {
+    transform: translate(1px, 1px);
+   }
+  }
+
+  .input__task {
+   padding: .5rem 1rem;
+   width: 85%;
+   height: 100%;
+   font-size: 1.1rem;
+   background-color: var(--task-bac-clr);
+   color: var(--text-clr-400);
+   font-weight: bold;
+   border: none;
+
+   &:focus {
+    outline: none
+   }
+  }
+ }
+}
