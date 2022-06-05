@@ -11,6 +11,10 @@ html {
   box-sizing: inherit;
 }
 
+* {
+  font-family: "Josefin Sans", sans-serif;
+}
+
 :root {
   --white: hsl(0, 0%, 100%);
   --body-bac-clr: hsl(0, 0%, 98%);
@@ -20,6 +24,8 @@ html {
   --text-clr-300: hsl(236, 9%, 61%);
   --text-clr-400: hsl(235, 19%, 35%);
   --hover-cont-clr: hsl(220, 98%, 61%);
+  --ring-clr: hsl(280, 87%, 65%);
+  --check-bac: hsl(192, 100%, 67%);
   --linear-bac: linear-gradient(hsl(192, 100%, 67%) to hsl(280, 87%, 65%));
   --background--img: url("./../images/bg-mobile-light.jpg");
 }
@@ -37,6 +43,8 @@ html {
   --text-clr-300: hsl(234, 11%, 52%);
   --text-clr-400: hsl(234, 39%, 85%);
   --text-clr-400-hover: hsl(236, 33%, 92%);
+  --ring-clr: hsl(192, 100%, 67%);
+  --check-bac: hsl(280, 87%, 65%);
   --background--img: url("./../images/bg-mobile-dark.jpg");
 }
 
@@ -45,11 +53,42 @@ html {
     --background--img: url("./../images/bg-desktop-dark.jpg");
   }
 }
-* {
-  font-family: "Josefin Sans", sans-serif;
+.check--box, .app__header .header--input .input--btn {
+  width: 15%;
+  height: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.check--box::before, .app__header .header--input .input--btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  border: 2px solid var(--text-clr-100);
+  border-radius: 50%;
+  z-index: 10;
+  transition: 0.3s;
+}
+@media (min-width: 576px) {
+  .check--box::before, .app__header .header--input .input--btn::before {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
+.check--box:hover::before, .app__header .header--input .input--btn:hover::before {
+  border-color: var(--ring-clr);
+  opacity: 0.6;
 }
 
 body {
+  padding: 2rem 0;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -59,6 +98,11 @@ body {
   transition-property: background-color, color;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
+}
+@media (min-width: 576px) and (min-height: 576px) {
+  body {
+    padding: 3.5rem 0;
+  }
 }
 
 .background__image {
@@ -73,15 +117,30 @@ body {
 }
 @media (min-width: 576px) {
   .background__image {
-    height: 40%;
+    height: 35%;
   }
 }
 
-.app__header {
+.app {
+  width: min(85%, 475px);
+  height: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.app__header {
+  width: 100%;
+  height: 18%;
+  display: flex;
+  align-content: space-between;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+@media (min-width: 576px) {
+  .app__header {
+    height: 20%;
+  }
 }
 .app__header .header__title {
   width: 50%;
@@ -105,51 +164,239 @@ body {
   width: 100%;
 }
 .app__header .header--input {
-  margin: 1.5rem 0;
-  border-radius: 4px;
+  width: 100%;
+  height: 2.7rem;
+  background-color: var(--task-bac-clr);
+  border-radius: 3px;
   overflow: hidden;
+  position: relative;
 }
-.app__header .header--input .input--btn {
-  width: 15%;
-  height: 100%;
-  background: linear-gradient(to right, hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
-  color: var(--white);
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  border: none;
+@media (min-width: 576px) {
+  .app__header .header--input {
+    height: 3.2rem;
+  }
 }
-.app__header .header--input .input--btn:active {
-  transform: translate(1px, 1px);
-}
-.app__header .header--input .input__task {
-  padding: 0.5rem 1rem;
+.app__header .input__task {
+  padding: 0.5rem;
   width: 85%;
   height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
   font-size: 1.1rem;
-  background-color: var(--task-bac-clr);
+  background-color: transparent;
   color: var(--text-clr-400);
   font-weight: bold;
   border: none;
 }
-.app__header .header--input .input__task:focus {
+.app__header .input__task:focus {
   outline: none;
 }
 
-.app {
-  margin: 2rem 0;
-  width: min(85%, 475px);
-  height: calc(100% - 6rem);
-  display: flex;
-  flex-direction: column;
+.app__main {
+  margin-top: 1.5rem;
+  height: calc(82% - 1.5rem);
+  overflow: hidden;
 }
 @media (min-width: 576px) {
-  .app {
-    margin: 3rem 0;
+  .app__main {
+    margin-top: 2rem;
+    height: calc(80% - 2rem);
   }
+}
+.app__main ul {
+  width: 100%;
+  height: calc(100% - 6.9rem);
+  overflow-y: auto;
+  cursor: pointer;
+}
+.app__main ul::-webkit-scrollbar {
+  width: 0.25rem;
+}
+.app__main ul::-webkit-scrollbar-thumb {
+  background-color: hsl(280deg, 87%, 65%);
+  border-radius: 4px;
+}
+@media (min-width: 576px) {
+  .app__main ul {
+    height: calc(100% - 3.2rem);
+  }
+  .app__main ul::-webkit-scrollbar {
+    width: 0.8rem;
+  }
+}
+.app__main ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.app__main ul li input[type=checkbox] {
+  width: 15%;
+  height: 100%;
+  cursor: pointer;
+}
+.app__main ul li input[type=checkbox]:is(:not(:checked))::after {
+  visibility: hidden;
+}
+.app__main ul li input[type=checkbox]:is(:checked) ~ label {
+  color: var(--text-clr-200);
+}
+.app__main ul li label {
+  padding-inline: 0.5rem;
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: var(--text-clr-300);
+  overflow: hidden;
+  transition: color 0.3s linear;
+}
+.app__main ul li .delete--button {
+  width: 15%;
+  height: 100%;
+  background-image: url("./../images/icon-cross.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+.app__main .control--buttons {
+  padding-inline: 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (min-width: 576px) {
+  .app__main .control--buttons {
+    margin: 0;
+    padding-inline: 1.5rem;
+  }
+}
+.app__main .control--buttons .left {
+  font-size: 0.8rem;
+  color: var(--text-clr-300);
+}
+.app__main .control--buttons .desktop__control {
+  display: none;
+}
+@media (min-width: 576px) {
+  .app__main .control--buttons .desktop__control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+.app__main .control--buttons .desktop__control button {
+  margin-inline: 0.5rem;
+}
+.app__main .mobile--controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 576px) {
+  .app__main .mobile--controls {
+    display: none;
+  }
+}
+.app__main .mobile--controls button {
+  margin-inline: 0.5rem;
+}
+
+.mobile__controle {
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 576px) {
+  .mobile__controle {
+    display: none;
+  }
+}
+.mobile__controle button {
+  margin: 0 0.5rem;
+  height: 100%;
+  background-color: transparent;
+  color: var(--text-clr-300);
+  font-weight: bold;
+  border: none;
+  transition: 0.3s color ease-in-out;
+  cursor: pointer;
+}
+.mobile__controle button:hover {
+  color: var(--hover-cont-clr);
 }
 
 .input__box {
   width: 100%;
-  height: 2rem;
+  height: 2.7rem;
   background-color: var(--task-bac-clr);
+  box-shadow: 0 0 3px var(--text-clr-100);
+  border-radius: 3px;
+  overflow: hidden;
+}
+@media (min-width: 576px) {
+  .input__box {
+    height: 3.2rem;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.control--button {
+  height: 100%;
+  background-color: transparent;
+  color: var(--text-clr-300);
+  border: none;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  transition-property: color;
+  transition-timing-function: ease-in-out;
+}
+.control--button:hover {
+  color: var(--text-clr-400-hover);
+}
+
+.active--btn {
+  color: var(--hover-cont-clr);
+  cursor: default;
+}
+.active--btn:hover {
+  color: var(--hover-cont-clr);
+}
+
+.check--box {
+  -webkit-appearance: none;
+}
+.check--box::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--check-bac);
+  background-image: url(./../images/icon-check.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: 0.2s;
+}
+@media (min-width: 576px) {
+  .check--box::after {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
 }

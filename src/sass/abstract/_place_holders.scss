@@ -1,0 +1,36 @@
+%check--button {
+ width: 15%;
+ height: 100%;
+ position: relative;
+ top: 0;
+ left: 0;
+ background-color: transparent;
+ border: none;
+ cursor: pointer;
+
+ &::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  border: 2px solid var(--text-clr-100);
+  border-radius: 50%;
+  z-index: 10;
+  transition: .3s;
+
+  @media(min-width: 576px) {
+   & {
+    width: 1.8rem;
+    height: 1.8rem;
+   }
+  }
+ }
+
+ &:hover::before {
+  border-color: var(--ring-clr);
+  opacity: .6;
+ }
+}

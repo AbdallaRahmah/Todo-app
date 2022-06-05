@@ -1,9 +1,19 @@
+@use "./../abstract/place_holders";
+
 // app header component
 .app__header {
+ width: 100%;
+ height: 18%;
  display: flex;
- align-items: center;
+ align-content: space-between;
  justify-content: space-between;
  flex-wrap: wrap;
+
+ @media(min-width: 576px) {
+  & {
+   height: 20%;
+  }
+ }
 
  .header__title {
   width: 50%;
@@ -31,37 +41,40 @@
  }
 
  .header--input {
-  margin: 1.5rem 0;
-  border-radius: 4px;
+  width: 100%;
+  height: 2.7rem;
+  background-color: var(--task-bac-clr);
+  border-radius: 3px;
   overflow: hidden;
+  position: relative;
 
-  .input--btn {
-   width: 15%;
-   height: 100%;
-   background: linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-   color: var(--white);
-   font-size: 1.1rem;
-   text-transform: uppercase;
-   border: none;
-
-   &:active {
-    transform: translate(1px, 1px);
+  @media(min-width:576px) {
+   & {
+    height: 3.2rem;
    }
   }
 
-  .input__task {
-   padding: .5rem 1rem;
-   width: 85%;
-   height: 100%;
-   font-size: 1.1rem;
-   background-color: var(--task-bac-clr);
-   color: var(--text-clr-400);
-   font-weight: bold;
-   border: none;
+  .input--btn {
+   @extend %check--button;
+  }
 
-   &:focus {
-    outline: none
-   }
+ }
+
+ .input__task {
+  padding: .5rem;
+  width: 85%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.1rem;
+  background-color: transparent;
+  color: var(--text-clr-400);
+  font-weight: bold;
+  border: none;
+
+  &:focus {
+   outline: none
   }
  }
 }

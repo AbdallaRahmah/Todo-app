@@ -1,0 +1,63 @@
+@use"./../abstract/place_holders";
+
+@use "./../abstract/variables";
+
+// control button style
+.control--button {
+ height: 100%;
+ background-color: transparent;
+ color: var(--text-clr-300);
+ border: none;
+ cursor: pointer;
+
+ transition: {
+  duration: .3s;
+  property: color;
+  timing-function: ease-in-out;
+ }
+
+ &:hover {
+  color: var(--text-clr-400-hover);
+ }
+}
+
+// Active button style
+.active--btn {
+ color: var(--hover-cont-clr);
+ cursor: default;
+
+ &:hover {
+  color: var(--hover-cont-clr);
+ }
+}
+
+
+// check button style
+.check--box {
+ @extend %check--button;
+ -webkit-appearance: none;
+
+ &::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--check-bac);
+  background-image: url(./../images/icon-check.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: .2s;
+
+  @media(min-width: 576px) {
+   & {
+    width: 1.8rem;
+    height: 1.8rem;
+   }
+  }
+ }
+}
