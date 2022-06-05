@@ -1,6 +1,7 @@
 @use "./../abstract/abstract";
 
 body {
+ padding: 2rem 0;
  width: 100vw;
  height: 100vh;
  display: flex;
@@ -12,5 +13,11 @@ body {
   property: background-color, color;
   duration: .3s;
   timing-function: ease-in-out;
+ }
+
+ @media(min-width: 576px) and (min-height: 576px) {
+  & {
+   padding: 3.5rem 0;
+  }
  }
 }

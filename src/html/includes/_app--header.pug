@@ -1,7 +1,9 @@
 .app__header 
  h1.header__title Todo
  button(class="header--toggle",id="mode--toggle")
+  label.sr-only Dark Mode Toggle
   img(class="toggle__img",id="toggle__img",src="./images/icon-moon.svg",alt="dark mode toggle")
- div(class="header--input input__box") 
-  button(class="input--btn",id="task__input") add
-  input(type="text",name="task",class="input__task",id="task__data")
+ div(class="header--input") 
+  input(type="text",name="task",class="input__task", id="task--data",dir="auto",placeholder="Create a new todo",autofocus)
+  button(class="input--btn", id="task--input")
+   label.sr-only Task Input Button

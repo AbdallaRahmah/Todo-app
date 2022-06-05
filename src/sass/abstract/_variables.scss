@@ -8,6 +8,8 @@
  --text-clr-300: hsl(236, 9%, 61%);
  --text-clr-400: hsl(235, 19%, 35%);
  --hover-cont-clr: hsl(220, 98%, 61%);
+ --ring-clr: hsl(280, 87%, 65%);
+ --check-bac: hsl(192, 100%, 67%);
  --linear-bac: linear-gradient(hsl(192, 100%, 67%) to hsl(280, 87%, 65%));
  // light image var
  --background--img: url("./../images/bg-mobile-light.jpg");
@@ -29,6 +31,8 @@
  --text-clr-300: hsl(234, 11%, 52%);
  --text-clr-400: hsl(234, 39%, 85%);
  --text-clr-400-hover: hsl(236, 33%, 92%);
+ --ring-clr: hsl(192, 100%, 67%);
+ --check-bac: hsl(280, 87%, 65%);
  // dark image var
  --background--img: url("./../images/bg-mobile-dark.jpg");
 }
