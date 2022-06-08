@@ -1,8 +1,4 @@
-window.addEventListener("DOMContentLoaded", () => {
-  genrateMode();
-  genrateList();
-}); // the list object
-
+// the list object
 const ToDoList = {
   allTasks: [],
   idList: [],
@@ -37,13 +33,11 @@ const ToDoList = {
   },
   setClearCompleted: () => {
     ToDoList.allTasks = ToDoList.allTasks.filter(task => task.done === false);
-    localStorage.setItem("allTasks", JSON.stringify(ToDoList.allTasks));
     return ToDoList.allTasks;
   },
   setNewTask: task => {
     ToDoList.allTasks.push(task);
     ToDoList.idList.push(task.id);
-    localStorage.setItem("allTasks", JSON.stringify(ToDoList.allTasks));
   },
   setDelTask: id => {
     ToDoList.allTasks = ToDoList.allTasks.filter(item => {
@@ -52,7 +46,6 @@ const ToDoList = {
     ToDoList.idList = ToDoList.idList.filter(item => {
       return item !== id;
     });
-    localStorage.setItem("allTasks", JSON.stringify(ToDoList.allTasks));
     reRenderLeftItemBar();
   },
   setModTask: id => {
@@ -61,7 +54,6 @@ const ToDoList = {
         task.done === false ? task.done = true : task.done = false;
       }
     });
-    localStorage.setItem("allTasks", JSON.stringify(ToDoList.allTasks));
   }
 }; // the task class constructor
 
@@ -106,19 +98,16 @@ modeBtn.addEventListener("click", () => {
     case "light":
       enableDarkMode();
       mode = "dark";
-      localStorage.setItem("mode", "dark");
       break;
 
     case "dark":
       disableDarkMode();
       mode = "light";
-      localStorage.setItem("mode", "light");
       break;
 
     default:
       disableDarkMode();
       mode = "light";
-      localStorage.setItem("mode", "light");
   }
 });
 /*
@@ -162,31 +151,6 @@ const setActiveBtn = button => {
     btn.classList.remove("active--btn");
   });
   button.classList.add("active--btn");
-};
-
-const genrateList = () => {
-  ToDoList.allTasks = JSON.parse(localStorage.getItem("allTasks"));
-  ToDoList.allTasks.forEach(task => {
-    ToDoList.idList.push(task.id);
-  });
-  reRenderList(ToDoList.allTasks);
-  reRenderLeftItemBar();
-};
-
-const genrateMode = () => {
-  let storedMode = localStorage.getItem("mode");
-
-  if (storedMode !== null) {
-    mode = storedMode;
-  }
-
-  if (mode === "dark") {
-    enableDarkMode();
-    mode = "dark";
-  } else if (mode === "light") {
-    disableDarkMode();
-    mode = "light";
-  }
 };
 
 const reRenderList = toDo => {
