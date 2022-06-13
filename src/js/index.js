@@ -2,26 +2,26 @@
 const ToDoList = {
   allTasks: [],
   idList: [],
-  getlistLength: () => {
+  getTaskId: () => {
     const genrateId = () => Math.floor(Math.random() * 100);
     if (ToDoList.idList.includes(genrateId())) {
-      ToDoList.getlistLength();
+      ToDoList.getTaskId();
     } else {
       return genrateId();
     }
   },
-  getListTasks: () => {
+  getAllTasks: () => {
     return ToDoList.allTasks;
   },
   getActiveTasks: () => {
-    let arr = ToDoList.allTasks.filter((task) => task.done === false);
-    return arr;
+    let toDo = ToDoList.allTasks.filter((task) => task.done === false);
+    return toDo;
   },
   getCompletedTasks: () => {
-    let arr = ToDoList.allTasks.filter((task) => task.done === true);
-    return arr;
+    let toDo = ToDoList.allTasks.filter((task) => task.done === true);
+    return toDo;
   },
-  getLeftItems: () => {
+  getCountLeftTasks: () => {
     let counter = 0;
     ToDoList.allTasks.forEach((task) => {
       if (task.done === false) {
@@ -33,12 +33,12 @@ const ToDoList = {
   setClearCompleted: () => {
     ToDoList.allTasks = ToDoList.allTasks.filter((task) => task.done === false);
     return ToDoList.allTasks;
-  },
-  setNewTask: (task) => {
+  }, 
+  setAddNewTask: (task) => {
     ToDoList.allTasks.push(task);
     ToDoList.idList.push(task.id);
   },
-  setDelTask: (id) => {
+  setDeleteTask: (id) => {
     ToDoList.allTasks = ToDoList.allTasks.filter((item) => {
       return item.id !== id;
     });
@@ -47,7 +47,7 @@ const ToDoList = {
     });
     reRenderLeftItemBar();
   },
-  setModTask: (id) => {
+  setModifyTask: (id) => {
     ToDoList.allTasks.forEach((task) => {
       if (task.id === id) {
         task.done === false ? (task.done = true) : (task.done = false);
@@ -126,7 +126,7 @@ controlButtons.forEach((button) => {
   button.addEventListener("click", () => {
     switch (button.getAttribute("data-name")) {
       case "all":
-        reRenderList(ToDoList.getListTasks());
+        reRenderList(ToDoList.getAllTasks());
         setActiveBtn(button);
         break;
       case "active":
@@ -141,7 +141,7 @@ controlButtons.forEach((button) => {
         reRenderList(ToDoList.setClearCompleted());
         break;
       default:
-        reRenderList(ToDoList.getListTasks());
+        reRenderList(ToDoList.getAllTasks());
         break;
     }
   });
@@ -192,11 +192,11 @@ const reRenderList = (toDo) => {
     checkBtn.addEventListener("click", () => {
       if (checkBtn.checked) {
         label.style.textDecoration = "line-through";
-        ToDoList.setModTask(item.id);
+        ToDoList.setModifyTask(item.id);
         reRenderLeftItemBar();
       } else {
         label.style.textDecoration = "none";
-        ToDoList.setModTask(item.id);
+        ToDoList.setModifyTask(item.id);
         reRenderLeftItemBar();
       }
     });
@@ -214,7 +214,7 @@ const reRenderList = (toDo) => {
 
     delBtn.addEventListener("click", (e) => {
       listItem.remove();
-      ToDoList.setDelTask(item.id);
+      ToDoList.setDeleteTask(item.id);
       reRenderLeftItemBar();
     });
 
@@ -226,20 +226,20 @@ const reRenderList = (toDo) => {
 const reRenderLeftItemBar = () => {
   const leftIems = document.getElementById("left--items");
 
-  let counter = ToDoList.getLeftItems();
+  let counter = ToDoList.getCountLeftTasks();
 
   leftIems.textContent = `${counter} items left`;
 };
 
 const addTask = (data) => {
   if (data !== "") {
-    const taskId = ToDoList.getlistLength();
+    const taskId = ToDoList.getTaskId();
 
     let task = new Task(taskId, data);
 
-    ToDoList.setNewTask(task);
+    ToDoList.setAddNewTask(task);
 
-    reRenderList(ToDoList.getListTasks());
+    reRenderList(ToDoList.getAllTasks());
 
     reRenderLeftItemBar();
   }
