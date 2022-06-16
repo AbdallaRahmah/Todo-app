@@ -1,4 +1,3 @@
-// the list object
 const ToDoList = {
   allTasks: [],
   idList: [],
@@ -31,8 +30,8 @@ const ToDoList = {
     return counter;
   },
   setClearCompleted: () => {
+    ToDoList.allTasks.forEach((task) => {task.done === true ? document.getElementById(task.id).remove() : ""});
     ToDoList.allTasks = ToDoList.allTasks.filter((task) => task.done === false);
-    return ToDoList.allTasks;
   }, 
   setAddNewTask: (task) => {
     ToDoList.allTasks.push(task);
@@ -56,7 +55,6 @@ const ToDoList = {
   },
 };
 
-// the task class constructor
 class Task {
   constructor(id, data) {
     this.id = id;
@@ -67,7 +65,7 @@ class Task {
 
 /*
 **************
-input new task
+input task data
 **************
 */
 const taskInputBtn = document.getElementById("task--input");
@@ -138,7 +136,7 @@ controlButtons.forEach((button) => {
         setActiveBtn(button);
         break;
       case "clear--completed":
-        reRenderList(ToDoList.setClearCompleted());
+        ToDoList.setClearCompleted();
         break;
       default:
         reRenderList(ToDoList.getAllTasks());
@@ -163,15 +161,18 @@ const reRenderList = (toDo) => {
   toDo.forEach((item) => {
     const listItem = document.createElement("li");
 
+    listItem.setAttribute("id",item.id);
+
     listItem.classList.add("input__box");
 
-    const label = document.createElement("label");
+        // tha task data label
+        const label = document.createElement("label");
 
-    label.append(item.data);
-
-    label.setAttribute("for", `task-${item.id}`);
-
-    listItem.append(label);
+        label.append(item.data);
+    
+        label.setAttribute("for", `task-${item.id}`);
+    
+        listItem.append(label);
 
     // the check button
     const checkBtn = document.createElement("input");
@@ -204,7 +205,7 @@ const reRenderList = (toDo) => {
     listItem.prepend(checkBtn);
 
     // the delete button
-    const delBtn = document.createElement("span");
+    const delBtn = document.createElement("button");
 
     delBtn.setAttribute("data-task", item.id);
 

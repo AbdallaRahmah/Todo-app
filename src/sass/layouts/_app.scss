@@ -1,0 +1,202 @@
+@use "./../abstract/variables";
+
+@use "./../abstract/place_holders";
+
+.app {
+  margin: 2rem 0;
+  width: min(85%, 475px);
+  height: 100%;
+
+  @media (min-width: 576px) {
+    & {
+      margin: 3.5rem 0;
+    }
+  }
+
+  //  App Header Start
+  .app__header {
+    width: 100%;
+    display: flex;
+    align-content: space-between;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .header__title {
+      width: 50%;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 5px;
+    }
+
+    .header--toggle {
+      width: 1.5rem;
+      height: 1.5rem;
+      background-color: transparent;
+      border: none;
+      overflow: hidden;
+      cursor: pointer;
+
+      &:active {
+        transform: translate(1px, 1px);
+      }
+
+      .toggle__img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .header--input {
+      margin-top: 1rem;
+      width: 100%;
+      height: 2.7rem;
+      background-color: var(--task-bac-clr);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+
+      @media (min-width: 576px) {
+        & {
+          height: 3.2rem;
+          margin-top: 1.5rem;
+        }
+      }
+
+      .input--btn {
+        @extend %check--button;
+      }
+    }
+
+    .input__task {
+      padding: 0.5rem;
+      width: 85%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 1.1rem;
+      background-color: transparent;
+      color: var(--text-clr-400);
+      font-weight: bold;
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  //  App Header End
+
+  //   App Main Start
+  .app__main {
+    margin-top: 1.5rem;
+
+    @media (min-width: 576px) {
+      & {
+        margin-top: 2rem;
+      }
+    }
+
+    ul {
+      width: 100%;
+      cursor: pointer;
+
+      li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        input[type="checkbox"] {
+          width: 15%;
+          height: 100%;
+          cursor: pointer;
+        }
+
+        input[type="checkbox"]:is(:not(:checked)) {
+          &::after {
+            visibility: hidden;
+          }
+        }
+
+        input[type="checkbox"]:is(:checked) ~ label {
+          color: var(--text-clr-200);
+        }
+
+        label {
+          padding-inline: 0.5rem;
+          width: 70%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          color: var(--text-clr-300);
+          overflow: hidden;
+          transition: color 0.3s linear;
+        }
+
+        .delete--button {
+          width: 15%;
+          height: 100%;
+          background-image: url("./../images/icon-cross.svg");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .control--buttons {
+      padding-inline: 1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      @media (min-width: 576px) {
+        & {
+          margin: 0;
+          padding-inline: 1.5rem;
+        }
+      }
+
+      .left {
+        font-size: 0.8rem;
+        color: var(--text-clr-300);
+      }
+
+      .desktop__control {
+        display: none;
+
+        @media (min-width: 576px) {
+          & {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+
+        button {
+          margin-inline: 0.5rem;
+        }
+      }
+    }
+
+    .mobile--controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (min-width: 576px) {
+        & {
+          display: none;
+        }
+      }
+
+      button {
+        margin-inline: 0.5rem;
+      }
+    }
+  }
+  //   App Main End
+}

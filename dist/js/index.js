@@ -1,4 +1,3 @@
-// the list object
 const ToDoList = {
   allTasks: [],
   idList: [],
@@ -32,8 +31,10 @@ const ToDoList = {
     return counter;
   },
   setClearCompleted: () => {
+    ToDoList.allTasks.forEach(task => {
+      task.done === true ? document.getElementById(task.id).remove() : "";
+    });
     ToDoList.allTasks = ToDoList.allTasks.filter(task => task.done === false);
-    return ToDoList.allTasks;
   },
   setAddNewTask: task => {
     ToDoList.allTasks.push(task);
@@ -55,7 +56,7 @@ const ToDoList = {
       }
     });
   }
-}; // the task class constructor
+};
 
 class Task {
   constructor(id, data) {
@@ -67,7 +68,7 @@ class Task {
 }
 /*
 **************
-input new task
+input task data
 **************
 */
 
@@ -136,7 +137,7 @@ controlButtons.forEach(button => {
         break;
 
       case "clear--completed":
-        reRenderList(ToDoList.setClearCompleted());
+        ToDoList.setClearCompleted();
         break;
 
       default:
@@ -160,7 +161,9 @@ const reRenderList = toDo => {
   });
   toDo.forEach(item => {
     const listItem = document.createElement("li");
-    listItem.classList.add("input__box");
+    listItem.setAttribute("id", item.id);
+    listItem.classList.add("input__box"); // tha task data label
+
     const label = document.createElement("label");
     label.append(item.data);
     label.setAttribute("for", `task-${item.id}`);
@@ -190,7 +193,7 @@ const reRenderList = toDo => {
     });
     listItem.prepend(checkBtn); // the delete button
 
-    const delBtn = document.createElement("span");
+    const delBtn = document.createElement("button");
     delBtn.setAttribute("data-task", item.id);
     delBtn.classList.add("delete--button");
     listItem.append(delBtn);
