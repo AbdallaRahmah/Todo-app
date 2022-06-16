@@ -94,6 +94,7 @@ body {
   align-items: center;
   background-color: var(--body-bac-clr);
   position: relative;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   transition-property: background-color, color;
   transition-duration: 0.3s;
@@ -129,6 +130,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .attribution {
+  margin-bottom: 1.5rem;
   width: min(90%, 475px);
   color: var(--text-clr-400);
   font-weight: bold;
@@ -254,6 +256,8 @@ body::-webkit-scrollbar-thumb {
   background-image: url("./../images/icon-cross.svg");
   background-repeat: no-repeat;
   background-position: center;
+  background-color: transparent;
+  border: none;
   cursor: pointer;
 }
 .app .app__main .control--buttons {
@@ -298,31 +302,6 @@ body::-webkit-scrollbar-thumb {
 }
 .app .app__main .mobile--controls button {
   margin-inline: 0.5rem;
-}
-
-.mobile__controle {
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-@media (min-width: 576px) {
-  .mobile__controle {
-    display: none;
-  }
-}
-.mobile__controle button {
-  margin: 0 0.5rem;
-  height: 100%;
-  background-color: transparent;
-  color: var(--text-clr-300);
-  font-weight: bold;
-  border: none;
-  transition: 0.3s color ease-in-out;
-  cursor: pointer;
-}
-.mobile__controle button:hover {
-  color: var(--hover-cont-clr);
 }
 
 .input__box {
